@@ -36,9 +36,9 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 
 ### assert
 
-If you've written tests before then you're familiar with `assert`; in some frameworks `should` or `expect` fill the role of `assert`.
+테스트 코드를 써 보신 적이 있다면 `assert`라는 단어에 익숙할 겁니다. 몇몇 프레임워크에서는 `assert` 대신 `should`나 `expect`를 사용하지만, 그래도 익숙하기는 마찬가지입니다.
 
-We use the `assert` macro to test that the expression is true.  In the event that it is not, an error will be raised and our tests will fail.  To test a failure let's change our sample and then run `mix test`:
+해당 조건식이 참인지 테스트할 때 `assert` 매크로를 사용합니다. 참이 아니게 되는 일이 벌어진다면, 테스트가 실패하면서 에러를 던집니다. 테스트가 실패하는 경우를 확인해보기 위해서 샘플 테스트 코드를 수정하고 `mix test`를 실행해봅시다:
 
 ```elixir
 defmodule ExampleTest do
@@ -51,7 +51,7 @@ defmodule ExampleTest do
 end
 ```
 
-Now we should see a very different kind of output:
+이제 조금 색다르게 출력되는 것을 확인할 수 있습니다:
 
 ```shell
   1) test the truth (ExampleTest)
@@ -69,7 +69,7 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 1 tests, 1 failures
 ```
 
-ExUnit will tells us exactly where our failed assertions are, what the expected value was, and what the actual was.
+테스트에 실패했을 때 ExUnit은 참이 아니라서 틀려버린 `assert`가 있던 곳과 예상했던 값, 실제 결과를 알려줄 것입니다.
 
 ### refute
 
