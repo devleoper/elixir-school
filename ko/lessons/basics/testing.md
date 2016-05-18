@@ -73,17 +73,17 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 
 ### refute
 
-`refute` is to `assert` as `unless` is to `if`.  Use `refute` when you want to ensure a statement is always false.
+`if`에 `unless`가 있다면 `assert`에는 `refute`가 있습니다. 실행 결과가 항상 거짓일 때 `refute`를 사용하면 됩니다.
 
 ### assert_raise
 
-Sometimes it may be necessary to assert that an error has been raised, we can do this with `assert_raise`.  We'll see an example of `assert_raise` in the next lesson on Plug.
+때로는 에러가 발생하는 상황을 테스트로 작성해야 할 때가 올텐데, 이 때에는 `assert_raise`를 사용하면 됩니다. 나중에 Plug를 다룰 수업에서 `assert_raise`를 사용하는 예제를 살펴보겠습니다.
 
-## Test Setup
+## 테스트 준비
 
-In some instances it may be necessary to perform setup before our tests.  To accomplish this we can use the `setup` and `setup_all` macros.  `setup` will be run before each test and `setup_all` once before the suite.  It is expected that they will return a tuple of `{:ok, state}`, the state will be available to our tests.
+몇몇 인스턴스를 테스트하려면 테스트하기 전에 준비 과정을 거치고 싶을 때가 있는데, 이럴 때에는 `setup`과 `setup_all` 매크로를 사용하면 됩니다. `setup`은 매 테스트를 수행하기 전에 실행되고, `setup_all`은 해당 테스트 스위트 전체를 수행하기 전에 실행됩니다. 여기에서 `{:ok, state}` 형식으로 된 튜플을 리턴받아서 `state`를 테스트에서 사용할 수 있습니다.
 
-For the sake of example, we'll change our code to use `setup_all`:
+예제로 한번 익혀볼 수 있게, `setup_all`을 쓰도록 코드를 수정해 봅시다.
 
 ```elixir
 defmodule ExampleTest do
@@ -100,9 +100,9 @@ defmodule ExampleTest do
 end
 ```
 
-## Mocking
+## 모의 객체 만들기
 
-The simple answer to mocking in Elixir: don't.  You may instinctively reach for mocks but they are highly discouraged in the Elixir community and for good reason.  If you follow good design principles the resulting code will be easy to test as individual components.
+Elixir에서 모의 객체를 만들어서 테스트를 진행하는 가장 깔끔한 방법은 "안 하는 것"입니다. 다른 언어에서 테스트를 다루어 보셨다면 지금쯤 모의 객체(mock)을 다룰 때가 되었다고 본능적으로 느끼셨겠지만, Elixir 커뮤니티에서 사용하지 말자는 의견이 크기도 하고, 사용하지 않을 만한 멋진 이유도 있기 때문이에요. 좋은 설계 원칙을 지켜 코딩을 한다면 그 결과물도 각 부분으로 나누어 테스트하기 쉬워질 테니까요.
 
-Resist the urge.
+모의 객체에 대한 끓어오르는 열망을 억누르도록 하세요.
 
