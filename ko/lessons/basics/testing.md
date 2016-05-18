@@ -1,12 +1,12 @@
 ---
 layout: page
-title: 테스팅
+title: 테스트
 category: basics
 order: 12
 lang: ko
 ---
 
-소프트웨어를 개발하는 데 있어서 테스트는 아주 중요합니다. 이번 수업에서는 ExUnit을 사용해서 Elixir 코드를 테스트하는 방법과 테스팅하는 데 있어서 가장 효율적인 절차를 함께 살펴보도록 하겠습니다.
+소프트웨어 개발에서 테스트는 아주 중요합니다. 이번 수업에서는 ExUnit을 사용해서 Elixir 코드를 테스트하는 방법과 테스팅하는 데 있어서 가장 효율적인 절차를 함께 살펴보도록 하겠습니다.
 
 {% include toc.html %}
 
@@ -14,7 +14,7 @@ lang: ko
 
 ExUnit은 Elixir에 기본으로 내장된, 우리가 짠 코드를 철저하게 테스트할 수 있는 모든 도구를 포함한 테스트 프레일워크입니다. 시작하기 전에 먼저 이야기하자면, Elixir 스크립트로 테스트를 구현했기 때문에 `.exs` 파일 확장자를 사용하는 법을 알아둬야 합니다. 테스트를 실행하려면 `ExUnit.start()`로 ExUnit을 실행해야 하는데, 보통 `test/test_helper.exs` 파일에서 이 코드가 실행됩니다.
 
-지난 수업에서 예제 프로젝트를 만들어 보았을 때, 굉장히 도움이 되는 mix가 간단한 테스트를 만들어줬습니다. `test/example_test.exs` 파일에서 확인해보도록 하지요:
+지난 수업에서 예제 프로젝트를 만들어 보았을 때, 굉장히 도움이 되는 mix가 이미 간단한 테스트를 만들어줬습니다. `test/example_test.exs` 파일에서 확인해보도록 하지요:
 
 ```elixir
 defmodule ExampleTest do
