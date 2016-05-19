@@ -14,7 +14,7 @@ lang: ko
 
 ExUnit은 Elixir에 기본으로 내장된, 우리가 짠 코드를 철저하게 테스트할 수 있는 모든 도구를 포함한 테스트 프레일워크입니다. 시작하기 전에 먼저 이야기하자면, Elixir 스크립트로 테스트를 구현했기 때문에 `.exs` 파일 확장자를 사용하는 법을 알아둬야 합니다. 테스트를 실행하려면 `ExUnit.start()`로 ExUnit을 실행해야 하는데, 보통 `test/test_helper.exs` 파일에서 이 코드가 실행됩니다.
 
-지난 수업에서 예제 프로젝트를 만들어 보았을 때, 굉장히 도움이 되는 mix가 이미 간단한 테스트를 만들어줬습니다. `test/example_test.exs` 파일에서 확인해보도록 하지요:
+지난 수업에서 예제 프로젝트를 만들어 보았을 때, mix가 간단한 테스트를 이미 만들어놓았을 정도로 많은 도움이 되었습니다. `test/example_test.exs` 파일에서 확인해보도록 하지요:
 
 ```elixir
 defmodule ExampleTest do
