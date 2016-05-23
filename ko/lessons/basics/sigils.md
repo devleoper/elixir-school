@@ -1,16 +1,16 @@
 ---
 layout: page
-title: Sigils
+title: 시길
 category: basics
 order: 10
 lang: ko
 ---
 
-Working with and creating sigils.
+시길(sigil)을 사용하고 만드는 법을 알아봅시다.
 
 {% include toc.html %}
 
-## Sigils Overview
+## 시길 둘러보기
 
 Elixir provides an alternative syntax for representing and working with literals. A sigil will start with a tilde `~` followed by a character. The Elixir core provides us with some built in sigils however, it is possible to create our own when we need to extend the language.
 
@@ -36,7 +36,7 @@ A list of delimiters include:
   - `"..."` A pair of double quotes
   - `'...'` A pair of single quotes
 
-### Char List
+### 문자 리스트
 
 The `~c` and `~C` sigils generate character lists respectively. For example:
 
@@ -50,7 +50,7 @@ iex> ~C/2 + 7 = #{2 + 7}/
 
 We can see the lowercased `~c` interpolates the calculation, whereas the uppercased `~C` sigil does not. We will see that this uppercase / lowercase sequence is a common theme throughout the built in sigils.
 
-### Regular Expressions
+### 정규 표현식
 
 The `~r` and `~R` sigils are used to represent Regular Expressions. We create them either on the fly or for use within the `Regex` functions. For example:
 
@@ -90,7 +90,7 @@ iex> Regex.split(~r/_/, string)
 
 As we can see, the string `"100_000_000"` is split on the underscore thanks to our `~r/_/` sigil. The `Regex.split` function returns a list.
 
-### String
+### 문자열
 
 The `~s` and `~S` sigils are used to generate string data. For example:
 
@@ -111,7 +111,7 @@ iex> ~S/welcome to elixir #{String.downcase "school"}/
 "welcome to elixir \#{String.downcase \"school\"}"
 ```
 
-### Word List
+### 단어 리스트
 
 The word list sigil can come in very handy time to time. It can save both time, keystrokes and arguably reduce the complexity within the codebase. Take this simple example:
 
@@ -133,7 +133,7 @@ iex> ~W/i love #{'e'}lixir school/
 ["i", "love", "\#{'e'}lixir", "school"]
 ```
 
-## Creating Sigils
+## 시길 만들기
 
 One of the goals of Elixir is to be an extensible programming language. It should come as no surprise then that you can easily create your own custom sigils. In this example, we will create a sigil to convert a string to uppercase. As there is already a function for this in the Elixir Core (`String.upcase/1`), we will wrap our sigil around that function.
 
