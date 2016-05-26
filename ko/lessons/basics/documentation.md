@@ -12,7 +12,7 @@ Elixir 코드 문서화하기.
 
 ## 주석
 
-프로그래밍을 할 때 우리가 얼마나 주석을 달아야 하는지, 무엇이 문서화의 품질을 보장하는지는 논란의 여지가 있습니다. 그러나, 우리가 동일한 코드베이스를 가지고 협업하는데 있어서 문서화가 얼마나 중요한 지는 모두가 동의하고 있습니다.
+프로그래머들 사이에서 주석을 얼마나 달아야 하며 어떻게 좋은 문서를 만들어내는 지가 오랫동안 논쟁거리였습니다. 그러나, 우리가 동일한 코드베이스를 가지고 협업하는데 있어서 문서화가 얼마나 중요한 지는 모두가 동의하고 있습니다.
 
 
 Elixir에서는 문서화를 *일급 시민*으로 취급하고 있습니다. 이는 다양한 함수에 접근하여 여러분의 프로젝트에 대한 문서를 생성합니다. Elixir는 코드베이스에 주석을 달기 위한 여러가지 다양한 특성을 코어에서 제공합니다.  다음의 3가지 방식을 보도록 합시다:
@@ -28,7 +28,7 @@ Elixir에서는 문서화를 *일급 시민*으로 취급하고 있습니다. �
 다음의 Elixir 스크립트를 봅시다(greeting.exs):
 
 ```elixir
-# Outputs 'Hello, chum.' to the console.
+# 콘솔에 'Hello, chum.' 를 출력합니다.
 IO.puts "Hello, " <> "chum."
 ```
 
@@ -41,7 +41,7 @@ IO.puts "Hello, " <> "chum."
 ```elixir
 defmodule Greeter do
   @moduledoc """
-  Provides a function `hello/1` to greet a human
+  사람을 반기는 함수 `hello/1` 를 제공합니다.
   """
 
   def hello(name) do
@@ -60,7 +60,7 @@ iex> h Greeter
 
                 Greeter
 
-Provides a function hello/1 to greet a human
+사람을 반기는 함수 hello/1 를 제공합니다. 
 ```
 
 ### 함수 문서화하기
@@ -75,11 +75,11 @@ defmodule Greeter do
   """
 
   @doc """
-  Prints a hello message
+  hello 메시지를 출력합니다.
 
   ## Parameters
 
-    - name: String that represents the name of the person.
+    - name: 사람의 이름을 나타내는 문자열입니다.
 
   ## Examples
 
@@ -107,11 +107,11 @@ iex> h Greeter.hello
 
                 def hello(name)
 
-`hello/1` prints a hello message
+`hello/1`는 hello 메시지를 출력합니다.
 
 Parameters
 
-  • name: String that represents the name of the person.
+  • name: 사람의 이름을 나타내는 문자열입니다.
 
 Examples
 
@@ -165,11 +165,11 @@ iex> h Greeter.hello
 
                 def hello(name)
 
-Prints a hello message
+hello 메시지를 출력합니다.
 
 Parameters
 
-  • name: String that represents the name of the person.
+  • name: 사람의 이름을 나타내는 문자열입니다.
 
 Examples
 
@@ -203,8 +203,8 @@ Earmark를 쓸 필요가 없다면, 그닥 의미를 가지지 않습니다. 여
 계속해서, 커맨드 라인에서 다음과 같이 두 개의 명령을 실행해보세요:
 
 ```bash
-$ mix deps.get # gets ExDoc + Earmark.
-$ mix docs # makes the documentation.
+$ mix deps.get # ExDoc와 Earmark를 불러옵니다
+$ mix docs # 문서를 생성합니다.
 
 Docs successfully generated.
 View them at "doc/index.html".
@@ -230,7 +230,7 @@ Elixir의 모범 가이드 라인에 따라 주석을 달아야 합니다. Elixi
 ```elixir
 defmodule Greeter do
   @moduledoc """
-  This is good documentation.
+  이 문서는 훌륭한 문서입니다.
   """
 
 end
@@ -253,7 +253,7 @@ defmodule Greeter do
   @moduledoc """
   ...
 
-  This module also has a `hello/1` function.
+  이 모듈도 `hello/1` 함수를 가지고 있습니다.
   """
 
   def hello(name) do
@@ -270,11 +270,11 @@ defmodule Greeter do
   @moduledoc """
   ...
 
-  This module also has a `hello/1` function.
+  이 모듈도 `hello/1` 함수를 가지고 있습니다.
   """
 
   alias Goodbye.bye_bye
-  # and so on...
+  # 기타 등등...
 
   def hello(name) do
     IO.puts "Hello, " <> name
@@ -293,11 +293,11 @@ defmodule Greeter do
   """
 
   @doc """
-  Prints a hello message
+  hello 메시지를 출력합니다.
 
   ## Parameters
 
-    - name: String that represents the name of the person.
+    - name: 사람의 이름을 나타내는 문자열 입니다.
 
   ## Examples
 
