@@ -6,39 +6,39 @@ order: 10
 lang: ko
 ---
 
-시길(sigil)을 사용하고 만드는 법을 알아봅시다.
+시길을 이용하고 만드는 법.
 
 {% include toc.html %}
 
-## 시길 둘러보기
+## 시길 개요
 
-Elixir provides an alternative syntax for representing and working with literals. A sigil will start with a tilde `~` followed by a character. The Elixir core provides us with some built in sigils however, it is possible to create our own when we need to extend the language.
+Elixir에서는 리터럴을 표현하거나 리터럴을 가지고 작업을 할 수 있도록 대체 문법을 제공합니다. 시길은 물결 문자 `~`와 그 뒤에 붙는 한 문자로 구성되어 있습니다. 몇 가지 시길은 Elixir 코어에서 기본적으로 제공되지만, 여러분이 언어를 확장할 필요가 있을 때 여러분만의 시길을 만들 수도 있습니다.
 
-A list of available sigils include:
+아래는 사용 가능한 시길의 목록입니다.
 
-  - `~C` Generates a character list **with no** escaping or interpolation
-  - `~c` Generates a character list **with** escaping and interpolation
-  - `~R` Generates a regular expression **with no** escaping or interpolation
-  - `~r` Generates a regular expression **with** escaping and interpolation
-  - `~S` Generates a string **with no** escaping or interpolation
-  - `~s` Generates a string **with** escaping and interpolation
-  - `~W` Generates a word list **with no** escaping or interpolation
-  - `~w` Generates a word list **with** escaping and interpolation
+  - `~C`는 이스케이프나 내부 식 전개 **없이** 문자 리스트를 생성합니다
+  - `~c`는 이스케이프나 내부 식 전개를 **하면서** 문자 리스트를 생성합니다
+  - `~R`은 이스케이프나 내부 식 전개 **없이** 정규 표현식을 생성합니다
+  - `~r`은 이스케이프나 내부 식 전개를 **하면서** 정규 표현식을 생성합니다
+  - `~S`는 이스케이프나 내부 식 전개 **없이** 문자열을 생성합니다
+  - `~s`는 이스케이프나 내부 식 전개를 **하면서** 문자열을 생성합니다
+  - `~W`는 이스케이프나 내부 식 전개 **없이** 단어 리스트를 생성합니다
+  - `~w`는 이스케이프나 내부 식 전개를 **하면서** 단어 리스트를 생성합니다
 
-A list of delimiters include:
+사용 가능한 구분자의 목록은 다음과 같습니다.
 
-  - `<...>` A pair of pointy brackets
-  - `{...}` A pair of curly brackets
-  - `[...]` A pair of square brackets
-  - `(...)` A pair of parenthesis
-  - `|...|` A pair of pipes
-  - `/.../` A pair of forward slashes
-  - `"..."` A pair of double quotes
-  - `'...'` A pair of single quotes
+  - `<...>` 꺾쇠 괄호 한 쌍
+  - `{...}` 중괄호 한 쌍
+  - `[...]` 대괄호 한 쌍
+  - `(...)` 소괄호 한 쌍
+  - `|...|` 파이프 한 쌍
+  - `/.../` 슬래시 한 쌍
+  - `"..."` 큰따옴표 한 쌍
+  - `'...'` 작은따옴표 한 쌍
 
 ### 문자 리스트
 
-The `~c` and `~C` sigils generate character lists respectively. For example:
+`~c`와 `~C` 시길은 각각 문자 리스트를 생성합니다. 예를 들면,
 
 ```elixir
 iex> ~c/2 + 7 = #{2 + 7}/
@@ -48,11 +48,11 @@ iex> ~C/2 + 7 = #{2 + 7}/
 '2 + 7 = #{2 + 7}'
 ```
 
-We can see the lowercased `~c` interpolates the calculation, whereas the uppercased `~C` sigil does not. We will see that this uppercase / lowercase sequence is a common theme throughout the built in sigils.
+소문자 `~c`는 수식을 계산하여 문자 리스트에 확장하지만, 대문자 시길 `~C`는 그렇지 않음을 알 수 있습니다. 앞으로 살펴볼 내장 시길에서도 소문자/대문자로 수식 확장을 하는가 안 하는가를 구별할 수 있을 것입니다.
 
 ### 정규 표현식
 
-The `~r` and `~R` sigils are used to represent Regular Expressions. We create them either on the fly or for use within the `Regex` functions. For example:
+`~r`과 `~R` 시길은 정규 표현식을 나타내기 위해 사용됩니다. 정규 표현식은 바로 사용하기 위해 만들거나 `Regex` 함수 안에서 쓰기 위해 만듭니다. 예를 들면,
 
 ```elixir
 iex> re = ~r/elixir/
@@ -65,7 +65,7 @@ iex> "elixir" =~ re
 true
 ```
 
-We can see that in the first test for equality, that `Elixir` does not match with the regular expression. This is because it is capitalized. Because Elixir supports Perl Compatible Regular Expressions (PCRE), we can append `i` to the end of our sigil to turn off case sensitivity.
+첫번째 동등 비교에서 `Elixir`는 정규 표현식과 일치하지 않음을 알 수 있습니다. 왜냐하면 그 단어는 첫 글자가 대문자이기 때문이죠. Elixir는 Perl 호환 정규 표현식 (PCRE)를 지원하기 때문에 시길 뒤에 `i`를 붙여서 대소문자 검사를 끌 수 있습니다.
 
 ```elixir
 iex> re = ~r/elixir/i
@@ -78,7 +78,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Further, Elixir provides the [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) API which is built on top of Erlang's regular expression library. Let's implement `Regex.split/2` using a regex sigil:
+더 나아가서, Elixir는 Erlang의 정규 표현식 라이브러리를 기반으로 만들어진 [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) API를 제공합니다. 정규 표현식 시길을 사용하여 `Regex.split/2`를 사용해 봅시다.
 
 ```elixir
 iex> string = "100_000_000"
@@ -88,11 +88,11 @@ iex> Regex.split(~r/_/, string)
 ["100", "000", "000"]
 ```
 
-As we can see, the string `"100_000_000"` is split on the underscore thanks to our `~r/_/` sigil. The `Regex.split` function returns a list.
+보다시피, 문자열 `"100_000_000"`이 `~r/_/` 시길 덕분에 밑줄을 기준으로 쪼개졌습니다. `Regex.split` 함수는 리스트를 반환합니다.
 
 ### 문자열
 
-The `~s` and `~S` sigils are used to generate string data. For example:
+`~s`와 `~S` 시길은 문자열 데이터를 생성하는 데 사용됩니다. 예를 들면,
 
 ```elixir
 iex> ~s/the cat in the hat on the mat/
@@ -101,7 +101,7 @@ iex> ~s/the cat in the hat on the mat/
 iex> ~S/the cat in the hat on the mat/
 "the cat in the hat on the mat"
 ```
-But what is the difference? The difference is similar to the Character List sigil that we looked at. The answer is interpolation and the use of escape sequences. If we take another example:
+그런데 차이가 무엇일까요? 차이는 앞에서 보았던 문자 리스트 시길과 비슷합니다. 정답은 식 전개와 이스케이프 시퀀스의 사용입니다. 다른 예를 한 번 들어보겠습니다.
 
 ```elixir
 iex> ~s/welcome to elixir #{String.downcase "school"}/
@@ -113,7 +113,7 @@ iex> ~S/welcome to elixir #{String.downcase "school"}/
 
 ### 단어 리스트
 
-The word list sigil can come in very handy time to time. It can save both time, keystrokes and arguably reduce the complexity within the codebase. Take this simple example:
+단어 리스트 시길은 때때로 유용하게 사용됩니다. 이 시길은 작업 시간과 키 입력 횟수를 동시에 줄이며, 코드베이스의 복잡도를 확실하게 줄여줍니다. 이 간단한 예제를 보죠.
 
 ```elixir
 iex> ~w/i love elixir school/
@@ -123,7 +123,7 @@ iex> ~W/i love elixir school/
 ["i", "love", "elixir", "school"]
 ```
 
-We can see that what is typed between the delimiters is separated by whitespace into a list. However, there is no difference between these two examples. Again, the difference comes with the interpolation and escape sequences. Take the following example:
+구분자 안에 쓰여진 것들이 공백에 의해 분리되어 리스트로 저장됨을 알 수 있습니다. 하지만 이 두 예제에서 차이점은 없어 보이네요. 이것 역시 차이점은 식 전개와 이스케이프 시퀀스에 있습니다. 다음 예제를 봅시다.
 
 ```elixir
 iex> ~w/i love #{'e'}lixir school/
@@ -135,7 +135,7 @@ iex> ~W/i love #{'e'}lixir school/
 
 ## 시길 만들기
 
-One of the goals of Elixir is to be an extensible programming language. It should come as no surprise then that you can easily create your own custom sigils. In this example, we will create a sigil to convert a string to uppercase. As there is already a function for this in the Elixir Core (`String.upcase/1`), we will wrap our sigil around that function.
+Elixir의 목표 중 하나는 확장 가능한 프로그래밍 언어가 되는 것입니다. 여러분이 여러분만의 시길을 쉽게 만들 수 있다는 것이 놀랍지 않다고 느껴져야 합니다. 이 예제에서는 문자열을 대문자로 변환하는 시길을 만들어 볼 것입니다. Elixir 코어에는 이미 이러한 일을 하는 함수가 있기 때문에 (`String.upcase/1`), 그 함수를 시길로 감싸보겠습니다.
 
 ```elixir
 
@@ -150,4 +150,4 @@ iex> ~u/elixir school/
 ELIXIR SCHOOL
 ```
 
-First we define a module called `MySigils` and within that module, we created a function called `sigil_u`. As there is no existing `~u` sigil in the existing sigil space, we will use it. The `_u` indicates that we wish use `u` as the character after the tilde. The function definition must take two arguments, an input and a list.
+먼저 `MySigils`라는 모듈을 만들고, 그 모듈 안에 `sigil_u`라는 함수를 만들었습니다. 기존의 시길중에 `~u` 시길이 없기 때문에 이것을 사용할 것입니다. `_u`는 물결 문자 다음에 `u`를 쓰고자 한다는 것을 의미합니다. 함수는 반드시 입력과 리스트, 이 두 개의 인자를 받아야 합니다.
