@@ -26,7 +26,7 @@ description:
   no: Leksjoner i programmeringsspråket Elixir
   ko: 프로그래밍 언어 Elixir 배우기
 baseurl: /
-url: https://elixirschool.com
+url: https://elixir-school-ko-staging.herokuapp.com
 og_image: https://elixirschool.com/assets/fb_share.jpg
 permalink: pretty
 languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko', 'id']
