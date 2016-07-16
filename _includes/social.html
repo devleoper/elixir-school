@@ -1,5 +1,5 @@
+{% assign lang = page.lang || site.default_lang %}
 {% if page.title == 'Elixir School' %}
-  {% assign lang = page.lang || site.default_lang %}
   {% assign title = site.description[lang] %}
 {% else %}
   {% assign title = page.title %}
