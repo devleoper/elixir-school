@@ -1,6 +1,6 @@
 ---
 layout: page
-title: IEx Helpers
+title: IEx 헬퍼
 category: basics
 order: 16
 lang: ko
@@ -8,20 +8,20 @@ lang: ko
 
 {% include toc.html %}
 
-## Overview
+## 개요
 
-As you begin to work in Elixir, IEx is your best friend.
-It is a REPL, but it has many advanced features that can make life easier when exploring new code or developing your own work as you go.
-There are a slew of built-in helpers that we will go over in this lesson.
+Elixir를 다루기 시작할 때부터, IEx는 우리들의 가장 좋은 친구입니다.
+IEx는 일종의 REPL이지만, 새로운 코드를 둘러보거나 여러분만의 작업물을 만들 때든 언제든지 삶을 편안하게 만들어줄 수 있는 고급 기능을 많이 가지고 있습니다.
+이번 수업에서는 IEx에 내장되어 있는 여러 헬퍼들을 살펴보도록 하겠습니다.
 
-### Autocomplete
+### 자동 완성
 
-When working in the shell, you often might find yourself using a new module that you are unfamiliar with.
-To understand some of what is available to you, the autocomplete functionality is wonderful.
-Simply type a module name followed by `.` then press `Tab`:
+셸에서 작업을 하는 도중에는, 잘 사용해본 적이 없는 모듈을 다뤄볼 일이 생기곤 합니다.
+자동 완성 기능은 이런 사용해본 적 없는 모듈에 어떤 것을 사용할 수 있는 지 알아볼 때 굉장히 유용합니다.
+모듈의 이름 뒤에 `.`을 누르고 `Tab`키를 누르면
 
 ```elixir
-iex> Map. # press Tab
+iex> Map. # Tab 키를 누르면
 delete/2             drop/2               equal?/2
 fetch!/2             fetch/2              from_struct/1
 get/2                get/3                get_and_update!/3
@@ -34,27 +34,27 @@ split/2              take/2               to_list/1
 update!/3            update/4             values/1
 ```
 
-And now we know the functions we have and their arity!
+사용할 수 있는 함수의 이름과 애리티를 확인할 수 있어요!
 
 ### `.iex.exs`
 
-Every time IEx starts it will look for a .iex.exs configuration file. If it's not present in the current directory, then the user's home directory (~/.iex.exs) will be used as the fallback.
+IEx가 실행될 때마다 IEx는 .iex.exs 설정 파일을 확인합니다. 현재 디렉터리에서 해당 파일을 찾지 못할 경우에는, 사용자의 홈 디렉터리에 있는 파일(~/.iex.exs)를 대신 사용합니다.
 
 Configuration options and code defined within this file will be available to us when the IEx shell starts up. For instance if we want some helper functions available to us in IEx, we can open up .iex.exs and make some changes.
 
-Let's start by adding a module with a few helper methods:
+헬퍼 메서드가 몇 개 있는 모듈을 추가하는 것부터 시작해봅시다.
 
 ```elixir
 defmodule IExHelpers do
-  def whats_this?(term) when is_nil(term), do: "Type: Nil"
-  def whats_this?(term) when is_binary(term), do: "Type: Binary"
-  def whats_this?(term) when is_boolean(term), do: "Type: Boolean"
-  def whats_this?(term) when is_atom(term), do: "Type: Atom"
-  def whats_this?(_term), do: "Type: Unknown"
+  def whats_this?(term) when is_nil(term), do: "타입: Nil"
+  def whats_this?(term) when is_binary(term), do: "타입: 이진"
+  def whats_this?(term) when is_boolean(term), do: "타입: 불리언"
+  def whats_this?(term) when is_atom(term), do: "타입: 애텀"
+  def whats_this?(_term), do: "타입: 알 수 없음"
 end
 ```
 
-Now when we run IEx we'll have the IExHelpers module available to us from the start. Open up IEx and let's try out our new helpers:
+이제 IEx를 시작할 때마다 IExHelpers 모듈을 바로 사용할 수 있습니다. IEx를 열어서 방금 만들어 본 헬퍼를 사용해 보도록 합시다.
 
 ```elixir
 $ iex
@@ -62,19 +62,19 @@ $ iex
 
 Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 iex> IExHelpers.whats_this?("a string")
-"Type: Binary"
+"Type: 이진 값"
 iex> IExHelpers.whats_this?(%{})
-"Type: Unknown"
+"Type: 알 수 없음"
 iex> IExHelpers.whats_this?(:test)
-"Type: Atom"
+"Type: 애텀"
 ```
-As we can see we don't need to do anything special to require or import our helpers, IEx handles that for us.
+위에서 한 대로, 헬퍼를 불러오기 위해서 따로 require나 import 할 필요가 없습니다. IEx가 대신 해 주는 것이지요.
 
 ### `h`
 
-`h` is one of the most useful tools our Elixir shell gives us.
+Elixir 셸이 제공해주는 도구 중 가장 유용한 것을 고르자면 `h` 이겠지요.
 Due to the language's fantastic first class support for documentation, the docs for any code can be reached using this helper.
-To see it in action is simple:
+간단하게 직접 사용해볼 수 있습니다.
 
 ```elixir
 iex> h Enum
@@ -104,8 +104,8 @@ functions, as they can potentially run forever. For example:
 ┃ Enum.each Stream.cycle([1, 2, 3]), &IO.puts(&1)
 ```
 
-And now we can even combine this with the autocomplete features of our shell.
-Imagine we were exploring Map for the first time:
+여기서 더 나아가 셸 안에서 자동 완성 기능과 함께 사용할 수도 있습니다.
+처음으로 Map에 관해 찾아본다고 생각해보세요.
 
 ```elixir
 iex> h Map
